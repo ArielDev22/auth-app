@@ -1,4 +1,4 @@
-# Aplicação de Auntenticação de Usuários
+# Aplicação de Autenticação de Usuários
 
 ## Índice
 - [Descrição](#descrição)
@@ -13,16 +13,17 @@
 > Aplicação que realiza a autenticação de usuários que estão devidamente cadastrados no sistema. Gerencia os envios de requisições com base nas roles de cada usuário.
 
 ## Funcionalidades
-- Cadastro de novos usuários (user ou admin)
+- Cadastro de novos usuários
 - Login
 - Geração e validação de tokens
 - Tratamento de exceções
+- Permissões por roles (user/admin)
 
 ## Endpoints
 - **POST /auth/register**: Cadastro de novo usuário
 - **POST /auth/login**: Login de usuário
 - **GET /users/info/{id}**: acessar dados de um usuário
-- **DELETE /users/delete/{id}**: deletar dados de um usuário 
+- **DELETE /users/delete/{id}**: deletar dados de um usuário (Admin)
 
 ## Como usar
 - **Execute a aplicação**:
