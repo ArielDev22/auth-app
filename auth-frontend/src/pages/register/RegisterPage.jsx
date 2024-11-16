@@ -6,8 +6,13 @@ import {
   validatePassword,
   validatePasswordConfirmation,
 } from "../../utils/FormDataValidator";
+import registerUser from "../../services/RegisterService";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
+  // navigate
+  const navigate = useNavigate();
+
   // STATES
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -20,12 +25,29 @@ function RegisterPage() {
   const [passwordError, setPasswordError] = useState("");
   const [confPasswordError, setConfPasswordError] = useState("");
 
+  // Função de envio do formulário
+  const submitData = async (e) => {
+    e.preventDefault();
+
+    const userData = { email, name, password, role: "user" };
+
+    try {
+      const response = await registerUser(userData);
+
+      alert(response.message);
+
+      navigate("/auth/login");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="auth">
       <div className="auth-head">
         <h1 className="auth-title">Criar conta</h1>
         <h4 className="auth-subtitle">
-          Já tem uma conta? <a href="/login">Faça seu login aqui!</a>
+          Já tem uma conta? <a href="/auth/login">Faça seu login aqui!</a>
         </h4>
       </div>
 
@@ -114,7 +136,9 @@ function RegisterPage() {
         </div>
 
         <div className="action-button">
-          <button type="submit">Criar conta</button>
+          <button type="submit" onClick={submitData}>
+            Criar conta
+          </button>
         </div>
       </div>
     </div>
