@@ -6,6 +6,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ import java.time.ZoneOffset;
 public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
+
+    @Autowired
+    private RevokedTokenService revokedTokenService;
 
     // GERAR UM TOKEN PARA UM DETERMINADO USUARIO
     public String generateToken(User user) {
@@ -37,6 +41,8 @@ public class TokenService {
     // VALIDAR O TOKEN
     public String validateToken(String token) {
         try {
+            if (revokedTokenService.isRevoked(token)) return null;
+
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             return JWT
