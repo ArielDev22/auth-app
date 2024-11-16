@@ -1,0 +1,19 @@
+:root {
+    --backgroundPagesColor: #201f1b;
+    --actionColor: #ff5e1e;
+    --actionColorHovered: #fb7a48;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    min-height: 100vh;
+    width: 100vw;
+    background: var(--backgroundPagesColor);
+  }
+  
