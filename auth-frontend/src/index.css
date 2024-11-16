@@ -40,3 +40,8 @@
   a:hover {
     color: var(--actionColorHovered);
   }
+
+  .errorLabel {
+    color: var(--actionColor);
+    font-size: 15px;
+  }
