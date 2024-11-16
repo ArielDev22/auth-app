@@ -6,6 +6,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -41,16 +42,15 @@ public class TokenService {
     // VALIDAR O TOKEN
     public String validateToken(String token) {
         try {
-            if (revokedTokenService.isRevoked(token)) return null;
-
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
-            return JWT
-                    .require(algorithm)
-                    .withIssuer("auth-backend")
-                    .build()
-                    .verify(token)
-                    .getSubject();
+            var decodedToken = JWT.require(algorithm).build().verify(token);
+
+            if (revokedTokenService.isRevoked(token)) return null;
+
+            return decodedToken.getSubject();
+        } catch (TokenExpiredException e) {
+            return "EXPIRED";
         } catch (JWTVerificationException e) {
             System.out.printf("Falha ao validar o token: " + e.getMessage());
             return null;
