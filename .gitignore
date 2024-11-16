@@ -1,0 +1,48 @@
+# Geral
+.DS_Store
+Thumbs.db
+*.log
+*.sw?
+
+# Backend
+auth-backend/target/
+auth-backend/.idea/
+auth-backend/.mvn/wrapper/maven-wrapper.jar
+auth-backend/HELP.md
+
+# Ferramentas e IDEs (Backend)
+auth-backend/.classpath
+auth-backend/.factorypath
+auth-backend/.project
+auth-backend/.settings/
+auth-backend/.springBeans
+auth-backend/.sts4-cache
+
+# Frontend
+auth-frontend/node_modules/
+auth-frontend/dist/
+auth-frontend/.env
+
+# Logs
+auth-frontend/npm-debug.log*
+auth-frontend/yarn-debug.log*
+auth-frontend/yarn-error.log*
+auth-frontend/pnpm-debug.log*
+
+# Ferramentas e IDEs (Frontend)
+auth-frontend/.idea/
+auth-frontend/.vscode/
+
+# Configuração Sensível
+auth-backend/.env
+auth-frontend/.env
+
+# Outros
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
