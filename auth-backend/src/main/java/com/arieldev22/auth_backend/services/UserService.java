@@ -1,6 +1,7 @@
 package com.arieldev22.auth_backend.services;
 
 import com.arieldev22.auth_backend.dto.UserLoginData;
+import com.arieldev22.auth_backend.exceptions.AlreadyUsedEmailException;
 import com.arieldev22.auth_backend.exceptions.InvalidCredentialsException;
 import com.arieldev22.auth_backend.model.User;
 import com.arieldev22.auth_backend.repository.UserRepository;
@@ -16,7 +17,7 @@ public class UserService {
 
     public User registerUser(User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new InvalidCredentialsException("Já existe uma conta com este email");
+            throw new AlreadyUsedEmailException("Já existe uma conta com este email");
         }
 
         String encodedPassword = encoder.encode(user.getPassword());
