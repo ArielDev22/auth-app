@@ -45,3 +45,10 @@
     color: var(--actionColor);
     font-size: 15px;
   }
+
+  .error-message {
+    color: var(--actionColor);
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
