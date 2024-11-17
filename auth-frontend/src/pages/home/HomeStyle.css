@@ -1,0 +1,11 @@
+:root {
+    --primary: #3f3c37;
+    --secundary: #201f1b;
+    --fontColor: #ffffff;
+    --placeHolderColor: #ccc6ba;
+    --buttonColor: #ff5e1e;
+  }
+
+.home-message {
+    color: var(--fontColor);
+  }
